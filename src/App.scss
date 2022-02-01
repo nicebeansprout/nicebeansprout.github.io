@@ -1,5 +1,7 @@
 $white: #fbf0de;
 $pink: #e9bbb9;
+$spriteMaxWidth: 1500px;
+$spriteMaxHeight: 607px;
 
 @mixin gradientButton() {
 	$button_color1: #bca4d1;
@@ -43,80 +45,106 @@ $pink: #e9bbb9;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9bbb9', endColorstr='#bdb2c3',GradientType=0 );
 }
 
-.hero-banner {
-	min-height: 0;
-	display: block;
-	padding: 0;
-	justify-content: space-around;
-	flex-direction: column;
-	align-items: center;
-	border-bottom: 1px solid #fff6ea;
-	background-color: #e9bbb9;
-	background-image: url('./assets/landing_assets/background.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
-	height: 100vh;
-
-	.landing-container {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: inherit;
-		overflow: hidden;
-		perspective: 1px;
-		&.parallax-container {
-			box-sizing: content-box;
-			&::after {
-				content: ' ';
-				position: absolute;
-				top: 0;
-				right: 0;
-				bottom: 0;
-				left: 0;
-				background-size: 100%;
-				z-index: -1;
-				background-repeat: no-repeat;
-				background-size: contain;
-			}
-		}
-	}
-	#landing-front {
-		transform: translateZ(0);
-		display: flex;
-		flex-flow: column;
-		justify-content: space-between;
-		align-items: center;
-	}
-	#landing-middle {
-		&.parallax-container::after {
-			transform: translateZ(-1px) scale(2.2);
-			background-position: center;
-			background-repeat: repeat;
-			background-attachment: fixed;
-			background-image: url('./assets/landing_assets/stars1.png');
-		}
-	}
-	#landing-back {
-		&.parallax-container::after {
-			transform: translateZ(-2px) scale(3.8);
-			background-attachment: fixed;
-			background-position: center 130px;
-			background-image: url('./assets/landing_assets/clouds.png');
-		}
-	}
+@mixin absolute($top, $left,$bottom,$right) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	bottom: $bottom;
+	right: $right;
 }
 
-.banner {
-	margin-top: 150px;
-	width: 450px;
-	height: 360px;
-	background-image: url('./assets/landing_assets/banner.png');
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: center;
-	cursor: pointer;
+.page-container {
+	background-color: #f2efe8;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+
+	#greetings {
+		color: black;
+		font-size: 56px;
+		margin-top: 80px;
+		h1, ul {
+			margin: 0
+		}
+
+		a {
+			display: inline-block;
+			background-color:#c3beb3;
+			width: 200px;
+			padding: 9px;
+			border-radius: 25px;
+			position: relative;
+			color: white;
+			font-size: 40px;
+			margin: 0 10px;
+			transition: ease-out 0.3s;
+			&:hover {
+				background-color: #858076;
+			}
+		}
+			
+	}
+	#calculableMe {
+		position: absolute;
+		bottom: -50px;
+		left: calc(50% - 250px);
+		width: 500px;
+		height: $spriteMaxHeight;
+		overflow: hidden;
+		#mouth {
+			position: absolute;
+			top: 330px;
+			left: 185px;
+			width: 50px;
+			height: 50px;
+			background-image: url('./assets/landing_assets/mouthsprite.png');
+			background-repeat: no-repeat;
+			background-size: contain;
+			z-index: 2;
+			&.surprised {
+				background-image: url('./assets/landing_assets/mouth2sprite.png');
+			}
+		}
+		#eyesContainer {
+			position: absolute;
+			top: 210px;
+			left: 88px;
+			width: 263px;
+			height: 110px;
+			background-color: white;
+		}
+		#eyes {
+			position: absolute;
+			top: 0;
+			left: calc(20px);
+			width: 213px;
+			height: 87px;
+			background-image: url('./assets/landing_assets/eyessprite.png');
+			background-repeat: no-repeat;
+			background-size: contain;
+			z-index: 0;
+		}
+	}
+	#me {
+		position: absolute;
+		width: $spriteMaxWidth;
+		height: $spriteMaxHeight;
+		background-image: url('./assets/landing_assets/blinksprite.png');
+		background-repeat: no-repeat;
+		background-size: cover;
+		z-index: 1;
+
+		&.position1 {
+			left: 0;
+		}
+		&.position2 {
+			left: -500px;
+		}
+		&.position3 {
+			left: -1000px;
+		}
+	}
 }
 
 .clouds {
@@ -147,37 +175,6 @@ $pink: #e9bbb9;
 		color: black;
 		font-size: 70px;
 		text-shadow: #fbf0de 1px 0 10px;
-	}
-}
-
-@media only screen and (max-width: 399px) {
-	.banner {
-		margin-top: 80px;
-		width: 90%;
-	}
-}
-
-@media only screen and (min-width: 400px) and (max-width: 599px) {
-	.banner {
-		margin-top: 90px;
-		width: 90%;
-	}
-}
-
-@media only screen and (max-width: 500px) {
-	.hero-banner {
-		background-attachment: scroll;
-		background-size: auto;
-	}
-	#landing-middle {
-		&.parallax-container::after {
-			background-attachment: scroll;
-		}
-	}
-	#landing-back {
-		&.parallax-container::after {
-			background-attachment: scroll;
-		}
 	}
 }
 
@@ -242,6 +239,28 @@ $pink: #e9bbb9;
 	@media only screen and (min-width: 400px) and (max-width: 599px) {
 		.header-subtitle {
 			padding: 15px;
+		}
+	}
+}
+
+.navbar {
+	height: 60px;
+	background-color: #c8c0ac;
+	border-bottom: 10px #b9b19c solid;
+	.page-container {
+		display: flex;
+		flex: 1;
+		height: 100%;
+		justify-content: space-around;
+		flex-direction: row;
+		align-items: center;
+	}
+	a {
+		color: white;
+		transform: translateY(0);
+		transition: ease-out 100ms;
+		&:hover {
+			transform: translateY(-3px);
 		}
 	}
 }
