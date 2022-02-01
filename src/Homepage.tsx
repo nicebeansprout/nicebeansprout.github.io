@@ -1,61 +1,31 @@
 import React from 'react';
+import Landing from './Landing'
 import './App.scss';
 
 class Homepage extends React.Component<any, any> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			spriteX: 0,
-			mouthO: false,
+			scrollIndex: 0,
 			eyesX: 20,
-			eyesY: 10,
-			greeting: 'Hello'
-		};
+			eyesY: 10
+		}
 	}
 
 	componentDidMount() {
+		this.setState({scrollIndex: 0})
+		window.onscroll = function() {
+			console.log("hi")
+		};
 		setInterval(() => {
 			this.blinkAnimation();
 		}, 5500);
-
-		this.setState({
-			greeting: this.getGreeting()
-		})
 	}
 
-	getGreeting() {
-		var date = new Date();
-		var time = date.getHours();
-		var greeting = "Hello";
-
-		if (time > 3 && time < 12){
-			greeting = "Good morning"
-		}
-		else if (time >= 12 && time < 18){
-			greeting = "Good afternoon"
-		}
-		
-		else if (time >= 18 || time <= 3){
-			greeting = "Good evening"
-		}
-
-		return greeting
+	handleScroll() {
+		console.log("hi")
 	}
-
-	blinkAnimation() {
-		var x = this.state.spriteX;
-		const speed = 100;
-		const interval = setInterval(() => {
-			if (x > -1000) {
-				x = x - 500;
-			} else {
-				x = 0;
-				clearInterval(interval);
-			}
-			this.setState({spriteX: x})
-		}, speed)
-	}
-
+	
 	calculateEyes(e: React.MouseEvent) {
 		var maxLeft = 45;
 		var maxTop = 20;
@@ -83,31 +53,39 @@ class Homepage extends React.Component<any, any> {
 	resetEyes() {
 		this.setState({eyesX: 20, eyesY: 10})
 	}
+	
+	blinkAnimation() {
+		var x = this.state.spriteX;
+		const speed = 100;
+		const interval = setInterval(() => {
+			if (x > -1000) {
+				x = x - 500;
+			} else {
+				x = 0;
+				clearInterval(interval);
+			}
+			this.setState({spriteX: x})
+		}, speed)
+	}
 
 	getMouthState() {
 		return this.state.mouthO ? 'surprised' : '';
 	}
 
+
 	render() {
 		return (
-			<div className="root">
-				<div id='landing' className='page-container' onMouseMove={(e) => this.calculateEyes(e)} onMouseOut={() => this.resetEyes()}>
-					<div id='greetings'>
-						<h1>{this.state.greeting}!</h1>
-						<div className='links'>
-							<a href="https://etsy.com/shop/nicebeansproutstudio" target="_blank" rel="noopener noreferrer">Etsy</a>
-							<a href="https://ko-fi.com/nicebeansprout" target="_blank" rel="noopener noreferrer">Kofi</a>
-							<a href="https://twitter.com/nicebeansprout" target="_blank" rel="noopener noreferrer">Twitter</a>
-						</div>
-					</div>
-					<div id='calculableMe' onMouseOver={() => this.setState({mouthO: true})} onMouseOut={() => this.setState({mouthO: false})}>
-						<div id='mouth' className={this.getMouthState()}></div>
-						<div id='me' style={{left: this.state.spriteX}}/>
-						<div id='eyesContainer'>
-							<div id='eyes' style={{left: this.state.eyesX, top: this.state.eyesY}}/>
-						</div>
+			<div className="root" onMouseMove={(e) => this.calculateEyes(e)} onMouseOut={() => this.resetEyes()}>
+				<div id='calculableMe' onMouseOver={() => this.setState({mouthO: true})} onMouseOut={() => this.setState({mouthO: false})}>
+					<div id='mouth' className={this.getMouthState()}></div>
+					<div id='me' style={{left: this.state.spriteX}}/>
+					<div id='eyesContainer'>
+						<div id='eyes' style={{left: this.state.eyesX, top: this.state.eyesY}}/>
 					</div>
 				</div>
+				<div id='portfolioHub' className='page-container'></div>
+				<Landing scrollIndex={this.state.scrollIndex} eyesPosition={{x: this.state.eyesX, y: this.state.eyesY}}/>
+
 			</div>
 		);
 	}

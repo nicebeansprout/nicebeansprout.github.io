@@ -53,17 +53,35 @@ $spriteMaxHeight: 607px;
 	right: $right;
 }
 
+.root {
+	@include absolute(0, 0, 0, 0);
+	
+
+	scroll-snap-type: y mandatory;
+	overflow-y: scroll;
+	height: 100vh;
+
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
 .page-container {
 	background-color: #f2efe8;
-	position: absolute;
+	height: 100vh;
 	width: 100%;
-	height: 100%;
-	overflow: hidden;
 
 	#greetings {
 		color: black;
 		font-size: 56px;
 		margin-top: 80px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
 		h1, ul {
 			margin: 0
 		}
@@ -85,65 +103,66 @@ $spriteMaxHeight: 607px;
 		}
 			
 	}
-	#calculableMe {
+	
+}
+#calculableMe {
+	position: absolute;
+	bottom: -50px;
+	left: calc(50% - 250px);
+	width: 500px;
+	height: $spriteMaxHeight;
+	overflow: hidden;
+	#mouth {
 		position: absolute;
-		bottom: -50px;
-		left: calc(50% - 250px);
-		width: 500px;
-		height: $spriteMaxHeight;
-		overflow: hidden;
-		#mouth {
-			position: absolute;
-			top: 330px;
-			left: 185px;
-			width: 50px;
-			height: 50px;
-			background-image: url('./assets/landing_assets/mouthsprite.png');
-			background-repeat: no-repeat;
-			background-size: contain;
-			z-index: 2;
-			&.surprised {
-				background-image: url('./assets/landing_assets/mouth2sprite.png');
-			}
-		}
-		#eyesContainer {
-			position: absolute;
-			top: 210px;
-			left: 88px;
-			width: 263px;
-			height: 110px;
-			background-color: white;
-		}
-		#eyes {
-			position: absolute;
-			top: 0;
-			left: calc(20px);
-			width: 213px;
-			height: 87px;
-			background-image: url('./assets/landing_assets/eyessprite.png');
-			background-repeat: no-repeat;
-			background-size: contain;
-			z-index: 0;
+		top: 330px;
+		left: 185px;
+		width: 50px;
+		height: 50px;
+		background-image: url('./assets/landing_assets/mouthsprite.png');
+		background-repeat: no-repeat;
+		background-size: contain;
+		z-index: 2;
+		&.surprised {
+			background-image: url('./assets/landing_assets/mouth2sprite.png');
 		}
 	}
-	#me {
+	#eyesContainer {
 		position: absolute;
-		width: $spriteMaxWidth;
-		height: $spriteMaxHeight;
-		background-image: url('./assets/landing_assets/blinksprite.png');
+		top: 210px;
+		left: 88px;
+		width: 263px;
+		height: 110px;
+		background-color: white;
+	}
+	#eyes {
+		position: absolute;
+		top: 0;
+		left: calc(20px);
+		width: 213px;
+		height: 87px;
+		background-image: url('./assets/landing_assets/eyessprite.png');
 		background-repeat: no-repeat;
-		background-size: cover;
-		z-index: 1;
+		background-size: contain;
+		z-index: 0;
+	}
+}
+#me {
+	position: absolute;
+	width: $spriteMaxWidth;
+	height: $spriteMaxHeight;
+	background-image: url('./assets/landing_assets/blinksprite.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: 1;
 
-		&.position1 {
-			left: 0;
-		}
-		&.position2 {
-			left: -500px;
-		}
-		&.position3 {
-			left: -1000px;
-		}
+	&.position1 {
+		left: 0;
+	}
+	&.position2 {
+		left: -500px;
+	}
+	&.position3 {
+		left: -1000px;
 	}
 }
 
