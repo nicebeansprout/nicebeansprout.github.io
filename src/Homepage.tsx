@@ -1,5 +1,4 @@
 import React from 'react';
-import Landing from './Landing'
 import './App.scss';
 
 class Homepage extends React.Component<any, any> {
@@ -8,22 +7,49 @@ class Homepage extends React.Component<any, any> {
 		this.state = {
 			scrollIndex: 0,
 			eyesX: 20,
-			eyesY: 10
+			eyesY: 10,
+			bubbleX: 0,
 		}
 	}
 
 	componentDidMount() {
-		this.setState({scrollIndex: 0})
-		window.onscroll = function() {
-			console.log("hi")
-		};
+		this.setState({
+			scrollIndex: 0, 
+			greeting: this.getGreeting()})
+
 		setInterval(() => {
 			this.blinkAnimation();
 		}, 5500);
+
+		setInterval(() => {
+			this.bubbleAnimation();
+		}, 200) 
+
 	}
 
-	handleScroll() {
-		console.log("hi")
+	bubbleAnimation() {
+		var x = this.state.bubbleX;
+			if (x > -600) {
+				x = x - 300;
+			} else {
+				x = 0;
+			}
+			this.setState({bubbleX: x})
+	}
+
+
+	handleScroll(e: any) {
+		// down
+		if (e.deltaY === 100) {
+			this.setState({
+				scrollIndex: 1
+			})
+		//up
+		} else if (e.deltaY === -100) {
+			this.setState({
+				scrollIndex: 0
+			})
+		}
 	}
 	
 	calculateEyes(e: React.MouseEvent) {
@@ -72,20 +98,63 @@ class Homepage extends React.Component<any, any> {
 		return this.state.mouthO ? 'surprised' : '';
 	}
 
+	getGreeting() {
+		var date = new Date();
+		var time = date.getHours();
+		var greeting = "Hello";
+
+		if (time > 3 && time < 12){
+			greeting = "Good morning"
+		}
+		else if (time >= 12 && time < 18){
+			greeting = "Good afternoon"
+		}
+		
+		else if (time >= 18 || time <= 3){
+			greeting = "Good evening"
+		}
+		return greeting
+	}
 
 	render() {
 		return (
-			<div className="root" onMouseMove={(e) => this.calculateEyes(e)} onMouseOut={() => this.resetEyes()}>
-				<div id='calculableMe' onMouseOver={() => this.setState({mouthO: true})} onMouseOut={() => this.setState({mouthO: false})}>
-					<div id='mouth' className={this.getMouthState()}></div>
-					<div id='me' style={{left: this.state.spriteX}}/>
-					<div id='eyesContainer'>
-						<div id='eyes' style={{left: this.state.eyesX, top: this.state.eyesY}}/>
+			<div className="root" 
+				onMouseMove={(e) => this.calculateEyes(e)} 
+				onMouseOut={() => this.resetEyes()}
+				onWheel={(e) => this.handleScroll(e)}
+			>
+			<div id='calculableMe' 
+				onMouseOver={() => this.setState({mouthO: true})} 
+				onMouseOut={() => this.setState({mouthO: false})}
+				style={{bottom: this.state.scrollIndex === 0 ? '-50px': '-280px'}}
+			>
+				<div id='mouth' className={this.getMouthState()}></div>
+				<div id='me' style={{left: this.state.spriteX}}/>
+				<div id='eyesContainer'>
+					<div id='eyes' style={{left: this.state.eyesX, top: this.state.eyesY}}/>
+				</div>
+			</div>
+			<div id='landing' className='page-container'>
+				<div id='greetings'>
+					<h1>{this.state.greeting}!</h1>
+					<div className='links'>
+						<a href="https://etsy.com/shop/nicebeansproutstudio" target="_blank" rel="noopener noreferrer">Etsy</a>
+						<a href="https://ko-fi.com/nicebeansprout" target="_blank" rel="noopener noreferrer">Kofi</a>
+						<a href="https://twitter.com/nicebeansprout" target="_blank" rel="noopener noreferrer">Twitter</a>
 					</div>
 				</div>
-				<div id='portfolioHub' className='page-container'></div>
-				<Landing scrollIndex={this.state.scrollIndex} eyesPosition={{x: this.state.eyesX, y: this.state.eyesY}}/>
-
+			</div>
+			<div id='portfolio-hub' className='page-container'>
+				<div id='artlink' className='portfolio-link' style={{
+					backgroundPositionX: this.state.bubbleX
+				}}>Art Works</div>
+				<div id='devlink' className='portfolio-link' style={{
+					backgroundPositionX: this.state.bubbleX
+				}}>Dev Works</div>
+				<div id='aboutlink' className='portfolio-link' style={{
+					backgroundPositionX: this.state.bubbleX
+				}}>About Me</div>
+			</div>
 			</div>
 		);
 	}
