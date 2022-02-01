@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.scss';
+import WebWorks from './WebWorks';
+import ArtWorks from './ArtWorks';
 
 class Homepage extends React.Component<any, any> {
 	constructor(props: any) {
@@ -9,6 +11,8 @@ class Homepage extends React.Component<any, any> {
 			eyesX: 20,
 			eyesY: 10,
 			bubbleX: 0,
+			activePortfolio: 1,
+			canIScroll: true
 		}
 	}
 
@@ -21,24 +25,12 @@ class Homepage extends React.Component<any, any> {
 			this.blinkAnimation();
 		}, 5500);
 
-		setInterval(() => {
-			this.bubbleAnimation();
-		}, 200) 
-
 	}
 
-	bubbleAnimation() {
-		var x = this.state.bubbleX;
-			if (x > -600) {
-				x = x - 300;
-			} else {
-				x = 0;
-			}
-			this.setState({bubbleX: x})
-	}
-
-
-	handleScroll(e: any) {
+	handleWheel(e: any) {
+		if (e.target.id === 'me' || this.state.activePortfolio !== 1){
+			return false;
+		}
 		// down
 		if (e.deltaY === 100) {
 			this.setState({
@@ -46,9 +38,18 @@ class Homepage extends React.Component<any, any> {
 			})
 		//up
 		} else if (e.deltaY === -100) {
+			window.scrollTo({top: 0});
 			this.setState({
 				scrollIndex: 0
 			})
+		}
+	}
+
+	handleScroll(e: any) {
+		var userOnPortfolio = this.state.scrollIndex === 1;
+		if (userOnPortfolio && this.state.activePortfolio !== 1){
+			this.setState({canIScroll: false})
+			return false;
 		}
 	}
 	
@@ -74,6 +75,19 @@ class Homepage extends React.Component<any, any> {
 			eyesX: x,
 			eyesY: y
 		})
+	}
+	getCalculableMePosition(): number {
+		var userOnPortfolio = this.state.scrollIndex === 1;
+		var mePosition = -50;
+		if (userOnPortfolio) {
+			if (this.state.activePortfolio !== 1) {
+				mePosition = -800;
+			} 
+			else {
+				mePosition = -280;
+			}
+		}
+		return mePosition;
 	}
 
 	resetEyes() {
@@ -116,17 +130,26 @@ class Homepage extends React.Component<any, any> {
 		return greeting
 	}
 
+	handlePortfolioClick(index: number) {
+		this.setState({
+			activePortfolio: index, 
+			canIScroll: index === 1 ? true: false
+		})
+	}
+
 	render() {
 		return (
 			<div className="root" 
 				onMouseMove={(e) => this.calculateEyes(e)} 
 				onMouseOut={() => this.resetEyes()}
-				onWheel={(e) => this.handleScroll(e)}
+				onWheel={(e) => this.handleWheel(e)}
+				onScroll={(e) => this.handleScroll(e)}
+				style={{overflow: this.state.canIScroll ? 'auto': 'hidden'}}
 			>
 			<div id='calculableMe' 
 				onMouseOver={() => this.setState({mouthO: true})} 
 				onMouseOut={() => this.setState({mouthO: false})}
-				style={{bottom: this.state.scrollIndex === 0 ? '-50px': '-280px'}}
+				style={{bottom: this.getCalculableMePosition()}}
 			>
 				<div id='mouth' className={this.getMouthState()}></div>
 				<div id='me' style={{left: this.state.spriteX}}/>
@@ -144,16 +167,22 @@ class Homepage extends React.Component<any, any> {
 					</div>
 				</div>
 			</div>
-			<div id='portfolio-hub' className='page-container'>
-				<div id='artlink' className='portfolio-link' style={{
-					backgroundPositionX: this.state.bubbleX
-				}}>Art Works</div>
-				<div id='devlink' className='portfolio-link' style={{
-					backgroundPositionX: this.state.bubbleX
-				}}>Dev Works</div>
-				<div id='aboutlink' className='portfolio-link' style={{
-					backgroundPositionX: this.state.bubbleX
-				}}>About Me</div>
+			<div id='portfolio-hub' className={'page-container active-page-' + this.state.activePortfolio}>
+				<div id='portfolio-art' className='portfolio-page'>
+					<ArtWorks/>
+					<div className="returnToCenter" onClick={() => this.handlePortfolioClick(1)}>x</div>
+				</div>
+				<div id='portfolio-center' className='portfolio-page'>
+					<div id='artlink' 
+					className='portfolio-link'onClick={() => this.handlePortfolioClick(0)}>Art Works</div>
+					<div id='devlink' className='portfolio-link' 
+					onClick={() => this.handlePortfolioClick(2)}>Dev Works</div>
+					<div id='aboutlink' className='portfolio-link'>About Me</div>
+				</div>
+				<div id='portfolio-dev' className='portfolio-page'>
+					<WebWorks />
+					<div className="returnToCenter" onClick={() => this.handlePortfolioClick(1)}>x</div>
+				</div>
 			</div>
 			</div>
 		);
