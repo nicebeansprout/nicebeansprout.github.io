@@ -11,6 +11,21 @@ const stickers = [
 			'https://www.hashicorp.com/resources/everybody-talks-understanding-the-key-algorithms-behind-consul',
 	},
 	{
+		image: 'dndcindy',
+		name: 'DND Rogue Halfling',
+		url: '',
+	},
+	{
+		image: 'dnddarius',
+		name: 'DND Warrior Dwarf',
+		url: '',
+	},
+	{
+		image: 'dndjeff',
+		name: 'DND Bard Tiefling',
+		url: '',
+	},
+	{
 		image: 'dockermastery',
 		name: 'Docker Mastery Udemy Course',
 		url: 'https://bretfisher.com/docker-mastery-for-nodejs',

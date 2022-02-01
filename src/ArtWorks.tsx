@@ -1,4 +1,7 @@
 import React from 'react';
+// @ts-ignore
+import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import './App.scss';
 import stickers from './data/stickersData';
 
@@ -38,24 +41,82 @@ class ArtWorks extends React.Component {
 			</div>
 		);
 	};
+
 	render() {
-		const item = {
-			icon: 'bun_illustration.png',
-			title: 'Illustrations',
-			subtitle:
-				"I'm also an illustrator! I am available for logo/mascot designs, illustration, and conference slide deck. Here are some of my best commissions!",
-		};
+		var portraits = [];
+		for (var i = 1; i <= 12; i++) {
+			const url = require(`./assets/work_assets/portraits/portrait_${i}.png`);
+			portraits.push(<div className='sticker-container'
+			key={'portrait'+i}>
+			<img
+				className='sticker-image'
+				src={url}
+				alt='portrait'
+			/>
+		</div>);
+		}
+
+		var emotes = [];
+		for (var i = 1; i <= 3; i++) {
+			const url = require(`./assets/work_assets/portraits/emote_${i}.png`);
+			emotes.push(<div className='emote-container'
+			key={'emotes'+i}>
+			<img
+				className='emotes-image'
+				src={url}
+				alt='emote'
+			/>
+		</div>);
+		}
 
 		return (
 			<div id='art-works' className='section-container'>
 				<h1>Digital Illustration</h1>
-					<p className='section-descriptor'>
-					I'm also an illustrator! I am available for logo/mascot designs, illustration, and conference slide deck. Here are some of my best commissions!</p>
-					<div className='stickers-container'>
-						{stickers.map(el => {
-							return <this.Sticker key={el.name} item={el} />;
-						})}
-					</div>
+				<p className='section-descriptor'>
+				I'm also an illustrator! I am available for logo/mascot designs, illustration, and conference slide deck. Here are some of my best commissions!</p>
+				<a href="https://ko-fi.com/nicebeansprout/commissions#buyCommissionModal" target='_blank' rel="noopener noreferrer" className='button'>Commission Me!</a>
+				<Tabs>
+					<TabList>
+						<Tab>Logo/Mascot</Tab>
+						<Tab>Portrait</Tab>
+						<Tab>Emotes</Tab>
+						<Tab>Live2D</Tab>
+					</TabList>
+					<TabPanel>
+						<p>Email me at nicebansprout@gmail.com or DM me on twitter <a href="https://twitter.com/nicebeansprout" target='_blank' rel="noopener noreferrer" >@nicebeansprout</a> if you're interested!</p>
+						<div className='stickers-container'>
+							{stickers.map(el => {
+								return <this.Sticker key={el.name} item={el} />;
+							})}
+						</div>
+					</TabPanel>
+					<TabPanel>
+						<p>Commission for a cartoon portrait is available on my <a href="https://ko-fi.com/nicebeansprout/commissions#buyCommissionModal" target='_blank' rel="noopener noreferrer" >Kofi</a>!</p>
+						<div className='stickers-container'>
+							{portraits}
+						</div>
+					</TabPanel>
+					<TabPanel>
+						<p>Commission for emotes is available on my <a href="https://ko-fi.com/nicebeansprout/commissions#buyCommissionModal" target='_blank' rel="noopener noreferrer" >Kofi</a>!</p>
+						<div className='stickers-container'>
+							{emotes}
+						</div>
+						</TabPanel>
+					<TabPanel>
+						<p>Commission for Live2D art/rig is currently not available.</p>
+						<div className="video-item">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/WXzDC8mTjgk" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+						</div>
+						<div className="video-item">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/n2L2p-nWseE" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+						</div>
+						<div className="video-item">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/m3vWG4_WdO0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+						</div>
+					</TabPanel>
+				</Tabs>
+				
+				
 			</div>
 		);
 	}

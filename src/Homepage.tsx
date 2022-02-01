@@ -161,9 +161,9 @@ class Homepage extends React.Component<any, any> {
 				<div id='greetings'>
 					<h1>{this.state.greeting}!</h1>
 					<div className='links'>
-						<a href="https://etsy.com/shop/nicebeansproutstudio" target="_blank" rel="noopener noreferrer">Etsy</a>
-						<a href="https://ko-fi.com/nicebeansprout" target="_blank" rel="noopener noreferrer">Kofi</a>
-						<a href="https://twitter.com/nicebeansprout" target="_blank" rel="noopener noreferrer">Twitter</a>
+						<a className="button" href="https://etsy.com/shop/nicebeansproutstudio" target="_blank" rel="noopener noreferrer">Etsy</a>
+						<a className="button" href="https://ko-fi.com/nicebeansprout" target="_blank" rel="noopener noreferrer">Kofi</a>
+						<a className="button" href="https://twitter.com/nicebeansprout" target="_blank" rel="noopener noreferrer">Twitter</a>
 					</div>
 				</div>
 			</div>

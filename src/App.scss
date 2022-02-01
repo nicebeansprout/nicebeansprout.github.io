@@ -100,6 +100,22 @@ $spriteMaxHeight: 607px;
 	background-repeat: no-repeat;
     background-size: 80px;
 }
+.button {
+	display: inline-block;
+	background-color:#c3beb3;
+	min-width: 200px;
+    max-width: 300px;
+	padding: 9px;
+	border-radius: 25px;
+	position: relative;
+	color: white;
+	font-size: 40px;
+	margin: 0 10px;
+	transition: ease-out 0.3s;
+	&:hover {
+		background-color: #858076;
+	}
+}
 
 .page-container {
 	scroll-snap-align: start;
@@ -119,23 +135,6 @@ $spriteMaxHeight: 607px;
 		h1, ul {
 			margin: 0
 		}
-
-		a {
-			display: inline-block;
-			background-color:#c3beb3;
-			width: 200px;
-			padding: 9px;
-			border-radius: 25px;
-			position: relative;
-			color: white;
-			font-size: 40px;
-			margin: 0 10px;
-			transition: ease-out 0.3s;
-			&:hover {
-				background-color: #858076;
-			}
-		}
-			
 	}
 
 	&#portfolio-hub {
@@ -338,6 +337,11 @@ $spriteMaxHeight: 607px;
 		color: #333;
 		max-width: 650px;
 	}
+	.button {
+		margin: auto;
+		font-size: 30px;
+		margin-bottom: 35px;
+	}
 }
 
 .section-items {
@@ -480,7 +484,7 @@ $spriteMaxHeight: 607px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: space-evenly;
 }
 
 .sticker-container {
@@ -510,4 +514,22 @@ $spriteMaxHeight: 607px;
 	width: 200px;
 	height: 200px;
 	object-fit: contain;
+}
+
+.emote-container {
+    position: relative;
+    width: 500px;
+    height: 350px;
+    margin: 5px;
+}
+
+.emotes-image {
+	width: 500px;
+	height: 350px;
+	object-fit: contain;
+
+}
+
+.video-item {
+	padding: 20px;
 }
