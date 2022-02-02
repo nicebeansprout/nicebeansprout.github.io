@@ -57,10 +57,10 @@ class ArtWorks extends React.Component {
 		}
 
 		var emotes = [];
-		for (var i = 1; i <= 3; i++) {
-			const url = require(`./assets/work_assets/portraits/emote_${i}.png`);
+		for (var j = 1; j <= 3; j++) {
+			const url = require(`./assets/work_assets/portraits/emote_${j}.png`);
 			emotes.push(<div className='emote-container'
-			key={'emotes'+i}>
+			key={'emotes'+j}>
 			<img
 				className='emotes-image'
 				src={url}

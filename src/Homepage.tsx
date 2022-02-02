@@ -1,7 +1,10 @@
 import React from 'react';
+// @ts-ignore
+import ReactModal from 'react-modal';
 import './App.scss';
 import WebWorks from './WebWorks';
 import ArtWorks from './ArtWorks';
+
 
 class Homepage extends React.Component<any, any> {
 	constructor(props: any) {
@@ -12,7 +15,8 @@ class Homepage extends React.Component<any, any> {
 			eyesY: 10,
 			bubbleX: 0,
 			activePortfolio: 1,
-			canIScroll: true
+			canIScroll: true,
+			isAboutModalOpened: false
 		}
 	}
 
@@ -129,12 +133,21 @@ class Homepage extends React.Component<any, any> {
 		}
 		return greeting
 	}
+	getPortfolioCenterHeight(): number {
+		var height = 500;
+		var windowH = window.innerHeight;
+		return window.innerHeight - 300;
+	}
 
 	handlePortfolioClick(index: number) {
 		this.setState({
 			activePortfolio: index, 
 			canIScroll: index === 1 ? true: false
 		})
+	}
+
+	toggleAboutModal() {
+		this.setState((state: any) => {return {isAboutModalOpened: !state.isAboutModalOpened}})
 	}
 
 	render() {
@@ -172,17 +185,30 @@ class Homepage extends React.Component<any, any> {
 					<ArtWorks/>
 					<div className="returnToCenter" onClick={() => this.handlePortfolioClick(1)}>x</div>
 				</div>
-				<div id='portfolio-center' className='portfolio-page'>
+				<div id='portfolio-center' className='portfolio-page' style={{height: this.getPortfolioCenterHeight()}}>
 					<div id='artlink' 
 					className='portfolio-link'onClick={() => this.handlePortfolioClick(0)}>Art Works</div>
 					<div id='devlink' className='portfolio-link' 
 					onClick={() => this.handlePortfolioClick(2)}>Dev Works</div>
-					<div id='aboutlink' className='portfolio-link'>About Me</div>
+					<div id='aboutlink' className='portfolio-link' onClick={()=> this.toggleAboutModal()}>About Me</div>
 				</div>
 				<div id='portfolio-dev' className='portfolio-page'>
 					<WebWorks />
 					<div className="returnToCenter" onClick={() => this.handlePortfolioClick(1)}>x</div>
 				</div>
+				<ReactModal 
+					isOpen={this.state.isAboutModalOpened} 
+					onRequestClose={()=> this.toggleAboutModal()} 
+					parentSelector={() => document.querySelector('#root')}
+					className="aboutMeModal"
+					closeTimeoutMS={300}
+					ariaHideApp={false}
+					>
+					<h1>{this.getGreeting()}!</h1>
+					<p>Hi! My name is Lookmai, but you might also known me as Teagan online. I'm a frontend developer as well as digital illustrator. Currently my commission is opened via <a href="https://ko-fi.com/nicebeansprout" target='blank' rel='noopener noreferrer'>Kofi</a> and an <a href="https://etsy.com/shop/nicebeansprout" target='blank' rel='noopener noreferrer'>Etsy store</a> where I sell my custom made merchandise! I also stream on Twitch sometime over at <a href="https://twitch.tv/nicebeansprout" target='blank' rel='noopener noreferrer'>twitch.tv/nicebeansprout</a>.</p>
+					<p>If you're interested in working with me, please feel free to contact me via twitter <a href="https://twitter.com/nicebeansprout" target='blank' rel='noopener noreferrer'>@nicebeansprout</a> or email me at nicebeansprout@gmail.com.</p>
+					<p>Thank you for visiting. Hope you have a wonderful rest of the day :)</p>
+				</ReactModal>
 			</div>
 			</div>
 		);
