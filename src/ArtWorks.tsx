@@ -83,7 +83,7 @@ class ArtWorks extends React.Component {
 						<Tab>Live2D</Tab>
 					</TabList>
 					<TabPanel>
-						<p>Email me at nicebansprout@gmail.com or DM me on twitter <a href="https://twitter.com/nicebeansprout" target='_blank' rel="noopener noreferrer" >@nicebeansprout</a> if you're interested!</p>
+						<p>Email me at nicebeansprout@gmail.com or DM me on twitter <a href="https://twitter.com/nicebeansprout" target='_blank' rel="noopener noreferrer" >@nicebeansprout</a> if you're interested!</p>
 						<div className='stickers-container'>
 							{stickers.map(el => {
 								return <this.Sticker key={el.name} item={el} />;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 // @ts-ignore
 import ReactModal from 'react-modal';
 import './App.scss';
@@ -29,6 +29,10 @@ class Homepage extends React.Component<any, any> {
 			this.blinkAnimation();
 		}, 5500);
 
+	}
+
+	componentWillUnmount() {
+		clearInterval();
 	}
 
 	handleWheel(e: any) {
@@ -94,11 +98,11 @@ class Homepage extends React.Component<any, any> {
 		return mePosition;
 	}
 
-	resetEyes() {
+	resetEyes(): void {
 		this.setState({eyesX: 20, eyesY: 10})
 	}
 	
-	blinkAnimation() {
+	blinkAnimation(): void {
 		var x = this.state.spriteX;
 		const speed = 100;
 		const interval = setInterval(() => {
@@ -112,11 +116,11 @@ class Homepage extends React.Component<any, any> {
 		}, speed)
 	}
 
-	getMouthState() {
+	getMouthState(): string {
 		return this.state.mouthO ? 'surprised' : '';
 	}
 
-	getGreeting() {
+	getGreeting(): string {
 		var date = new Date();
 		var time = date.getHours();
 		var greeting = "Hello";
@@ -134,8 +138,6 @@ class Homepage extends React.Component<any, any> {
 		return greeting
 	}
 	getPortfolioCenterHeight(): number {
-		var height = 500;
-		var windowH = window.innerHeight;
 		return window.innerHeight - 300;
 	}
 
@@ -170,6 +172,10 @@ class Homepage extends React.Component<any, any> {
 					<div id='eyes' style={{left: this.state.eyesX, top: this.state.eyesY}}/>
 				</div>
 			</div>
+			<a href='/#/wisdom' id='cats' target='_blank 'rel="noopener noreferrer">
+				<div className='cat' id='KC'></div>
+				<div className='cat' id='Chickidee'></div>
+			</a>
 			<div id='landing' className='page-container'>
 				<div id='greetings'>
 					<h1>{this.state.greeting}!</h1>
@@ -205,7 +211,7 @@ class Homepage extends React.Component<any, any> {
 					ariaHideApp={false}
 					>
 					<h1>{this.getGreeting()}!</h1>
-					<p>Hi! My name is Lookmai, but you might also known me as Teagan online. I'm a frontend developer as well as digital illustrator. Currently my commission is opened via <a href="https://ko-fi.com/nicebeansprout" target='blank' rel='noopener noreferrer'>Kofi</a> and an <a href="https://etsy.com/shop/nicebeansprout" target='blank' rel='noopener noreferrer'>Etsy store</a> where I sell my custom made merchandise! I also stream on Twitch sometime over at <a href="https://twitch.tv/nicebeansprout" target='blank' rel='noopener noreferrer'>twitch.tv/nicebeansprout</a>.</p>
+					<p>Hi! My name is Lookmai. I'm a frontend developer as well as digital illustrator. Currently my commission is opened via <a href="https://ko-fi.com/nicebeansprout" target='blank' rel='noopener noreferrer'>Kofi</a> and an <a href="https://etsy.com/shop/nicebeansprout" target='blank' rel='noopener noreferrer'>Etsy store</a> where I sell my custom made merchandise! I also stream on Twitch sometime over at <a href="https://twitch.tv/nicebeansprout" target='blank' rel='noopener noreferrer'>twitch.tv/nicebeansprout</a>.</p>
 					<p>If you're interested in working with me, please feel free to contact me via twitter <a href="https://twitter.com/nicebeansprout" target='blank' rel='noopener noreferrer'>@nicebeansprout</a> or email me at nicebeansprout@gmail.com.</p>
 					<p>Thank you for visiting. Hope you have a wonderful rest of the day :)</p>
 				</ReactModal>

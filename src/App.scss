@@ -555,3 +555,56 @@ $spriteMaxHeight: 607px;
 .ReactModal__Overlay--before-close{
     opacity: 0;
 }
+
+#cats {
+	position: fixed;
+	bottom: 0;
+	z-index: 3;
+	display: flex;
+	align-items: flex-end;
+	transform: translateY(60%);
+	transition: ease-in-out 0.2s;
+	padding-left: 20px;
+	cursor: pointer;
+	&:hover  {
+		transform: translateY(0);
+		.cat {
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+	.cat {
+		background-repeat: no-repeat;
+		background-size: cover;
+		&::after {
+			position: absolute;
+			opacity: 0;
+		}
+		&#KC {
+			background-image: url('./assets/landing_assets/KC_blink.gif');
+			height: 200px;
+			width: 160px;
+			&::after {
+				content: '?';
+				bottom: 50px;
+				left: 30px;
+			}
+		}
+	
+		&#Chickidee {
+			background-image: url('./assets/landing_assets/chickidee_blink.gif');
+			width: 200px;
+			height: 180px;
+			margin-left: -10px;
+			margin-bottom: -10px;
+			position: relative;
+			&::after {
+				content: 'meow';
+				position: absolute;
+				top: -25px;
+				left: 80px;
+			}
+		}
+	}
+}
