@@ -18,8 +18,9 @@ function Wisdom() {
 
   React.useEffect(() => {
     const randomID = Math.floor(Math.random() * maxIDGen1 + 1)
-    axios.get(baseURL + '/pokemon/' + randomID).then((response) => {
-      setPokemon(response.data);
+    axios.get(baseURL + '/pokemon/' + randomID)
+      .then((response) => {
+        setPokemon(response.data);
     })
 
     setRandomQuote(pascalQuotes[Math.floor(Math.random() * pascalQuotes.length + 1)]);

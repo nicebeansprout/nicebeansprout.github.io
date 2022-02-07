@@ -4,6 +4,7 @@ import './App.scss';
 import Homepage from './Homepage';
 import Cats from './Cats';
 import Wisdom from './Wisdom';
+import PokemonFinder from './PokemonFinder';
 
 class App extends React.Component {
 	render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
 						<Route exact path='/' component={Homepage} />
 						<Route exact path='/cats' component={Cats} />
 						<Route exact path='/wisdom' component={Wisdom} />
+						<Route exact path='/pokemonfinder' component={PokemonFinder} />
 					</Switch>
 				</HashRouter>
 			</div>

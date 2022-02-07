@@ -6,9 +6,10 @@
 	"dependencies": {
 		"@types/react": "^16.9.5",
 		"@types/react-router-dom": "^5.1.7",
+		"axios": "^0.25.0",
 		"gh-pages": "^2.1.1",
 		"node-sass": "^4.12.0",
-		"axios": "^0.25.0",
+		"pokenode-ts": "^1.11.1",
 		"react": "^17.0.2",
 		"react-dom": "^16.9.0",
 		"react-modal": "^3.14.4",

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 // @ts-ignore
 import ReactModal from 'react-modal';
 import './App.scss';
