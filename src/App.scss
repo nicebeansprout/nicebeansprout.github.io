@@ -100,17 +100,19 @@ $spriteMaxHeight: 607px;
 	background-repeat: no-repeat;
     background-size: 80px;
 }
+
+
 .button {
 	display: inline-block;
 	background-color:#c3beb3;
 	min-width: 200px;
-    max-width: 300px;
+  max-width: 300px;
 	padding: 9px;
 	border-radius: 25px;
 	position: relative;
 	color: white;
 	font-size: 40px;
-	margin: 0 10px;
+	margin: 10px;
 	transition: ease-out 0.3s;
 	&:hover {
 		background-color: #858076;
@@ -203,16 +205,31 @@ $spriteMaxHeight: 607px;
 	
 	
 }
+
+@media screen and (max-width: 600px) {
+	.page-container > #greetings {
+		margin-top: 50px
+	}
+	h1 {
+		font-size: 50px;
+	}
+	.links {
+		display: flex;
+		flex-direction: column;	
+		align-items: center;
+	}
+}
 #calculableMe {
 	z-indeX: 3;
 	position: fixed;
 	bottom: -50px;
 	left: calc(50% - 250px);
-	width: 500px;
-	height: $spriteMaxHeight;
+	max-width: 500px;
+	max-height: $spriteMaxHeight;
 	overflow: hidden;
 	transition: ease-out 0.3s;
 	#mouth {
+		// opacity: 0;
 		position: absolute;
 		top: 330px;
 		left: 185px;
@@ -227,6 +244,7 @@ $spriteMaxHeight: 607px;
 		}
 	}
 	#eyesContainer {
+		// opacity: 0;
 		position: absolute;
 		top: 210px;
 		left: 88px;
@@ -246,14 +264,25 @@ $spriteMaxHeight: 607px;
 		z-index: 0;
 	}
 }
+#cantblink {
+	width: 100%;
+	height: 100%;
+	background-image: url('./assets/landing_assets/blinkstatic.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: 1;
+	transition: ease-out 0.3s;
+}
 #me {
+	// opacity: 0;
 	position: absolute;
-	width: $spriteMaxWidth;
-	height: $spriteMaxHeight;
+	max-width: $spriteMaxWidth;
+	max-height: $spriteMaxHeight;
 	background-image: url('./assets/landing_assets/blinksprite.png');
 	background-repeat: no-repeat;
 	background-size: cover;
 	z-index: 1;
+	pointer-events: none;
 
 	&.position1 {
 		left: 0;
@@ -296,7 +325,6 @@ $spriteMaxHeight: 607px;
 		text-shadow: #fbf0de 1px 0 10px;
 	}
 }
-
 .section-items {
 	display: flex;
 	flex-wrap: wrap;
@@ -605,6 +633,37 @@ $spriteMaxHeight: 607px;
 				top: -25px;
 				left: 80px;
 			}
+		}
+	}
+}
+
+@media screen and (max-width: 600px) { 
+	#calculableMe {
+		pointer-events: none;
+	}
+	#cats{
+		display: none;
+	}
+
+	.page-container {
+		&#portfolio-hub {
+			#portfolio-center {
+				flex-direction: column;
+				justify-content: center;
+				.portfolio-link {
+					background-image: none !important;
+					min-width: 200px;
+					height: 50px; 
+					padding: 0;
+					margin: 10px 0;
+					font-size: 50px;
+				}
+			}
+		}
+	}
+	.ReactModal__Body--open{
+    #cantblink  {
+			opacity: 0
 		}
 	}
 }
