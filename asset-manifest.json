@@ -1,24 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.1d61a48e.chunk.css",
-    "main.js": "/static/js/main.f6170b05.chunk.js",
-    "main.js.map": "/static/js/main.f6170b05.chunk.js.map",
+    "main.css": "/static/css/main.dbf2e189.chunk.css",
+    "main.js": "/static/js/main.8946910c.chunk.js",
+    "main.js.map": "/static/js/main.8946910c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.19b6ed4a.js",
     "runtime-main.js.map": "/static/js/runtime-main.19b6ed4a.js.map",
     "static/css/2.73b7487b.chunk.css": "/static/css/2.73b7487b.chunk.css",
-    "static/js/2.607d310e.chunk.js": "/static/js/2.607d310e.chunk.js",
-    "static/js/2.607d310e.chunk.js.map": "/static/js/2.607d310e.chunk.js.map",
+    "static/js/2.6edf0540.chunk.js": "/static/js/2.6edf0540.chunk.js",
+    "static/js/2.6edf0540.chunk.js.map": "/static/js/2.6edf0540.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.7ba447deb5a1e89f56cad042d2c94e9a.js": "/precache-manifest.7ba447deb5a1e89f56cad042d2c94e9a.js",
+    "precache-manifest.cd0e7216669ebc4a1619f3be681f55e5.js": "/precache-manifest.cd0e7216669ebc4a1619f3be681f55e5.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.73b7487b.chunk.css.map": "/static/css/2.73b7487b.chunk.css.map",
-    "static/css/main.1d61a48e.chunk.css.map": "/static/css/main.1d61a48e.chunk.css.map",
-    "static/js/2.607d310e.chunk.js.LICENSE.txt": "/static/js/2.607d310e.chunk.js.LICENSE.txt",
+    "static/css/main.dbf2e189.chunk.css.map": "/static/css/main.dbf2e189.chunk.css.map",
+    "static/js/2.6edf0540.chunk.js.LICENSE.txt": "/static/js/2.6edf0540.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/static/media/Karla-Regular.fd3f938a.ttf",
     "static/media/App.scss": "/static/media/toggle_link.2799b19b.png",
     "static/media/emote_1.png": "/static/media/emote_1.d0c06dc4.png",
     "static/media/emote_2.png": "/static/media/emote_2.784ba4ed.png",
     "static/media/emote_3.png": "/static/media/emote_3.2ab4f946.png",
+    "static/media/PokemonFinder.scss": "/static/media/kantomap.da4681ab.png",
     "static/media/portrait_1.png": "/static/media/portrait_1.db96de25.png",
     "static/media/portrait_10.png": "/static/media/portrait_10.f7504b98.png",
     "static/media/portrait_11.png": "/static/media/portrait_11.c16d3e3c.png",
@@ -62,8 +63,8 @@
   "entrypoints": [
     "static/js/runtime-main.19b6ed4a.js",
     "static/css/2.73b7487b.chunk.css",
-    "static/js/2.607d310e.chunk.js",
-    "static/css/main.1d61a48e.chunk.css",
-    "static/js/main.f6170b05.chunk.js"
+    "static/js/2.6edf0540.chunk.js",
+    "static/css/main.dbf2e189.chunk.css",
+    "static/js/main.8946910c.chunk.js"
   ]
 }
