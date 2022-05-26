@@ -9,6 +9,7 @@ import Landing from './Landing';
 import ArtWorks from './ArtWorks';
 import WebWorks from './WebWorks';
 import { CSSTransition } from 'react-transition-group';
+import ThemeToggle from './ThemeToggle';
 
 const PAGES = [
 	{	path: "/", value: 0}, 
@@ -28,7 +29,7 @@ const routes =[
 function App() {
 		const timeout = {enter: 400, exit: 800}
 		const [currentPage, setCurrentPage] = useState(0);
-		const [currentDirection, setCurrentDirection] = useState('')
+		const [currentDirection, setCurrentDirection] = useState('');
 
 		function getDirection(route: any): string {
 			if (!route) {
@@ -70,13 +71,14 @@ function App() {
 										mountOnEnter
 									>
 										<div className={getDirection(match)}>
-											<Component/>
+												<Component/>
 										</div>
 									</CSSTransition>
 								)}
 							</Route>
 						))}
 					</HashRouter>
+					{/* <ThemeToggle/> */}
 				</div>
 		);
 }
