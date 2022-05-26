@@ -1,4 +1,4 @@
-import React, { cloneElement, useState } from 'react';
+import React, { useState } from 'react';
 import { Route, HashRouter } from 'react-router-dom';
 import './App.scss';
 import './PageTransition.scss';

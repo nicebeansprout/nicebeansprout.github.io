@@ -87,7 +87,7 @@ $spriteMaxHeight: 607px;
 	justify-content: space-between;
 }
 
-.root {
+#root {
 	@include absolute(0, 0, 0, 0);
 	
 	// scroll-snap-type: y mandatory;
@@ -104,7 +104,7 @@ $spriteMaxHeight: 607px;
 	background-position: right bottom;
 	background-color: #f3efe7;
 	background-repeat: no-repeat;
-    background-size: 80px;
+  background-size: 76px;
 }
 
 
@@ -154,58 +154,6 @@ $spriteMaxHeight: 607px;
 		h1, ul {
 			margin: 0
 		}
-	}
-
-	&#portfolio-hub {
-		transform: translateX(-100%);
-		transition: ease-out 0.5s;
-		&.active-page-0 {
-			transform: translateX(0%);
-		}
-		&.active-page-1 {
-			transform: translateX(-100%);
-		}
-		&.active-page-2 {
-			transform: translateX(-200%);
-		}
-		.portfolio-page {
-			height: 100vh;
-			min-width: 100vw;
-			position: relative;
-		}
-		#portfolio-center {
-			height: 100%;
-			display: flex;
-			align-items: center;
-			align-content: center;
-			justify-content: space-around;
-			.portfolio-link {
-				display: flex;
-				width: 300px;
-				height: 300px;
-				color: black;
-				justify-content: center;
-				align-items: center;
-				font-size: 80px;
-				padding: 10px;
-				padding-bottom: 40px;
-				line-height: 50px;
-				cursor: pointer;
-				@include animation('bubblesLoop 0.5s');
-				animation-timing-function:step-start;
-				animation-iteration-count: infinite;
-				&#artlink {
-					background-image: url('./assets/landing_assets/bubble2sprite.png');
-				}
-				&#devlink {
-					background-image: url('./assets/landing_assets/bubble3sprite.png');
-				}
-				&#aboutlink {
-					background-image: url('./assets/landing_assets/bubble1sprite.png');
-				}
-			}
-		}
-		
 	}
 	
 }
@@ -338,15 +286,6 @@ $spriteMaxHeight: 607px;
 	justify-content: center;
 }
 
-.social-link {
-	margin: 10px;
-	width: 30px;
-	height: 30px;
-	object-fit: contain;
-	&:hover {
-		transform: translateY(-2px);
-	}
-}
 
 #web-works, #art-works {
 	display: flex;
@@ -667,6 +606,27 @@ $spriteMaxHeight: 607px;
 	.ReactModal__Body--open{
     #cantblink  {
 			opacity: 0
+		}
+	}
+}
+
+#socials {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	.links {
+		display: flex;
+		flex-direction: column;
+	}
+	.social-link {
+		background-color: #333;
+		color: white;
+    padding: 3px 12px;
+    margin: 5px 0;
+		cursor: pointer;
+		&:hover {
+			background-color: #444;
+			border-bottom:solid #000 5px;
 		}
 	}
 }

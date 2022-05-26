@@ -4,6 +4,7 @@ import './PageTransition.scss'
 // @ts-ignore
 import ReactModal from 'react-modal';
 import Me from "./Me";
+import Socials from './Socials';
 
 function Landing() {
 
@@ -48,6 +49,7 @@ function Landing() {
         </div>
       </div>
 		  <Me />
+      <Socials/>
       <ReactModal 
         isOpen={isModalOpend} 
         onRequestClose={() => toggleAboutModal()} 
