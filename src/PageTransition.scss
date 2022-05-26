@@ -1,0 +1,53 @@
+
+.slider-exit {
+  .page{
+    z-index: 1;
+    transition: all 800ms ease-out;
+  }
+}
+
+.slider-enter {
+  .page {
+    z-index: 10;
+  }
+}
+.slider-enter.left, .slider-exit.right {
+  .page{
+    transform: translateX(100%);
+  }
+}
+
+.slider-enter.right, .slider-exit.left {
+  .page {
+    transform: translateX(-100%);
+  }
+}
+
+.slider-enter-active {
+  .page{
+    transform: translateX(0);
+    transition: all 800ms ease-out;
+  }
+}
+
+.slider-enter-done > .page {
+  transition: all 800ms ease-out;
+}
+
+.exit-sliding-left > .slider-exit{
+  .page {
+    transform: translateX(100%);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.exit-sliding-right > .slider-exit {
+  .page {
+    transform: translateX(-100%);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

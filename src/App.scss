@@ -81,10 +81,16 @@ $spriteMaxHeight: 607px;
 	}
 }
 
+#landing {
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .root {
 	@include absolute(0, 0, 0, 0);
 	
-	scroll-snap-type: y mandatory;
+	// scroll-snap-type: y mandatory;
 	overflow-y: scroll;
 	height: 100vh;
 
@@ -96,7 +102,7 @@ $spriteMaxHeight: 607px;
 	}
 	background-image: url('./assets/landing_assets/logo_black.png');
 	background-position: right bottom;
-	background-color: #f2efe8;
+	background-color: #f3efe7;
 	background-repeat: no-repeat;
     background-size: 80px;
 }
@@ -114,9 +120,23 @@ $spriteMaxHeight: 607px;
 	font-size: 40px;
 	margin: 10px;
 	transition: ease-out 0.3s;
+	cursor: pointer;
 	&:hover {
 		background-color: #858076;
 	}
+}
+	
+.returnToCenter {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	width: 60px;
+	height: 60px;
+	display: block;
+	color: black;
+	font-size: 50px;
+	padding: 5px;
+	cursor: pointer;
 }
 
 .page-container {
@@ -130,9 +150,6 @@ $spriteMaxHeight: 607px;
 		color: black;
 		font-size: 56px;
 		margin-top: 80px;
-		position: absolute;
-		top: 0;
-		left: 0;
 		width: 100%;
 		h1, ul {
 			margin: 0
@@ -155,18 +172,6 @@ $spriteMaxHeight: 607px;
 			height: 100vh;
 			min-width: 100vw;
 			position: relative;
-			.returnToCenter {
-				position: absolute;
-				top: 0;
-				right: 0;
-				width: 60px;
-				height: 60px;
-				display: block;
-				color: black;
-				font-size:  60px;
-				padding: 5px;
-				cursor: pointer;
-			}
 		}
 		#portfolio-center {
 			height: 100%;
@@ -203,7 +208,6 @@ $spriteMaxHeight: 607px;
 		
 	}
 	
-	
 }
 
 @media screen and (max-width: 600px) {
@@ -220,14 +224,11 @@ $spriteMaxHeight: 607px;
 	}
 }
 #calculableMe {
-	z-indeX: 3;
-	position: fixed;
-	bottom: -50px;
-	left: calc(50% - 250px);
+	z-index: 2;
 	max-width: 500px;
 	max-height: $spriteMaxHeight;
 	overflow: hidden;
-	transition: ease-out 0.3s;
+	// transition: ease-out 0.3s;
 	#mouth {
 		// opacity: 0;
 		position: absolute;
@@ -271,7 +272,7 @@ $spriteMaxHeight: 607px;
 	background-repeat: no-repeat;
 	background-size: cover;
 	z-index: 1;
-	transition: ease-out 0.3s;
+	// transition: ease-out 0.3s;
 }
 #me {
 	// opacity: 0;
@@ -569,11 +570,13 @@ $spriteMaxHeight: 607px;
     padding: 10px 30px;
     border-radius: 30px;
     background: white;
+		z-index: 3;
 }
 
 .ReactModal__Overlay {
     opacity: 0;
     transition: 300ms ease-in-out;
+		z-index: 4;
 }
 
 .ReactModal__Overlay--after-open{

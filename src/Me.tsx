@@ -7,12 +7,13 @@ function debounce(fn: Function, ms: number) {
     clearTimeout(timer)
     timer = setTimeout(_ => {
       timer = null
+      // @ts-ignore
       fn.apply(this, arguments)
     }, ms)
   };
 }
 
-function Me(props)  {
+function Me(props: any)  {
   const [eyesStyles, setEyesStyles] = useState({
     transform: 'none'
   });
@@ -51,29 +52,29 @@ function Me(props)  {
     }
   });
 
-	function calculateEyes(e: React.MouseEvent) {
-		var maxLeft = 45;
-		var maxTop = 20;
+	// function calculateEyes(e: React.MouseEvent) {
+	// 	var maxLeft = 45;
+	// 	var maxTop = 20;
 
-		var x, y;
+	// 	var x, y;
 
-		var mouseX = e.clientX;
-		var mouseY = e.clientY;
+	// 	var mouseX = e.clientX;
+	// 	var mouseY = e.clientY;
 
-		var windowW = window.innerWidth;
-		var windowH = window.innerHeight;
+	// 	var windowW = window.innerWidth;
+	// 	var windowH = window.innerHeight;
 
-		var ratioX = maxLeft / windowW;
-		var ratioY = maxTop / windowH;
+	// 	var ratioX = maxLeft / windowW;
+	// 	var ratioY = maxTop / windowH;
 
-		x = (mouseX * ratioX);
-		y = (mouseY * ratioY);
+	// 	x = (mouseX * ratioX);
+	// 	y = (mouseY * ratioY);
 		
-		setEyesPosition({
-			x,
-      y
-		})
-	}
+	// 	setEyesPosition({
+	// 		x,
+  //     y
+	// 	})
+	// }
 
   function getSpriteStyles() {
 		const defaultWidth = 1500;
@@ -98,7 +99,7 @@ function Me(props)  {
 
   }
 
-  function getEyes(w, h) {
+  function getEyes(w: number, h: number) {
     const defaultX = 88;
     const defaultY = 210;
     const defaultW = 263;
@@ -112,8 +113,6 @@ function Me(props)  {
     let y =  defaultY * ratio
     setEyesStyles({
       transform: 'scale('+ ratio + ')',
-      left: x,
-      top: y,
     })
   }
 
@@ -204,7 +203,7 @@ function Me(props)  {
       <div id='eyes' style={{}}/>
     </div>
     </div> */}
-    <div id='cantblink' style={{transform: 'translateY(' + getPosition() + '%)'}}></div>
+    <div id='cantblink' style={{transform: 'translateY(' + 0 + '%)'}}></div>
   </div>);
 };
 

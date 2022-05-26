@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import './PageTransition.scss'
 import webItems from './data/webData';
 
 interface WorkItemType {
@@ -74,7 +75,8 @@ class WorkItem extends React.Component<Props, State> {
 class WebWorks extends React.Component {
 	render() {
 		return (
-			<div id='web-works' className='section-container'>
+			<div id='web-works' className='section-container page'>
+					<a href='/#/' className="returnToCenter">x</a>
 					<h1>I'm a front-end developer!</h1>
 					<p className='section-descriptor'>
 						I dabbled into HTML/CSS in high school and here I am! I have experiences with modern JS frameworks like React and Vue. Here are some of my favorite works that I've created over the years.</p>

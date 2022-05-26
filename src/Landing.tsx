@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react";
 import './App.scss';
+import './PageTransition.scss'
+// @ts-ignore
+import ReactModal from 'react-modal';
+import Me from "./Me";
 
 function Landing() {
 
   const [greeting, setGreeting] = useState('Hello');
+  const [isModalOpend, setIsModalOpened] = useState(false);
 
   useEffect(() => {
     setGreeting(getGreeting());
   }, []);
 
+
+  function toggleAboutModal() {
+    setIsModalOpened(!isModalOpend);
+  }
 
 	function getGreeting(): string {
 		var date = new Date();
@@ -29,15 +38,29 @@ function Landing() {
 	}
 
   return (
-    <div id='landing' className='page-container'>
+    <div id='landing' className='page-container page'>
       <div id='greetings'>
         <h1>{greeting}!</h1>
-        <div className='links'>
-          <a className="button" href="https://etsy.com/shop/nicebeansproutstudio" target="_blank" rel="noopener noreferrer">Etsy</a>
-          <a className="button" href="https://ko-fi.com/nicebeansprout" target="_blank" rel="noopener noreferrer">Kofi</a>
-          <a className="button" href="https://twitter.com/nicebeansprout" target="_blank" rel="noopener noreferrer">Twitter</a>
+        <div>
+          <a href='/#/art' id='artlink' className="button">Art Works</a>
+          <div id='aboutlink'className="button" onClick={() => toggleAboutModal()}>About Me</div>
+          <a href='/#/dev' id='devlink' className="button">Dev Works</a>
         </div>
       </div>
+		  <Me />
+      <ReactModal 
+        isOpen={isModalOpend} 
+        onRequestClose={() => toggleAboutModal()} 
+        parentSelector={() => document.querySelector('#root')}
+        className="aboutMeModal"
+        closeTimeoutMS={300}
+        ariaHideApp={false}
+        >
+        <h1>Hello!</h1>
+        <p>Hi! My name is Lookmai. I'm a frontend developer as well as digital illustrator. Currently my commission is opened via <a href="https://ko-fi.com/nicebeansprout" target='blank' rel='noopener noreferrer'>Kofi</a> and an <a href="https://etsy.com/shop/nicebeansprout" target='blank' rel='noopener noreferrer'>Etsy store</a> where I sell my custom made merchandise! I also stream on Twitch sometime over at <a href="https://twitch.tv/nicebeansprout" target='blank' rel='noopener noreferrer'>twitch.tv/nicebeansprout</a>.</p>
+        <p>If you're interested in working with me, please feel free to contact me via twitter <a href="https://twitter.com/nicebeansprout" target='blank' rel='noopener noreferrer'>@nicebeansprout</a> or email me at nicebeansprout@gmail.com.</p>
+        <p>Thank you for visiting. Hope you have a wonderful rest of the day :)</p>
+      </ReactModal>
     </div>)
 }
 

@@ -3,6 +3,7 @@ import React from 'react';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './App.scss';
+import './PageTransition.scss'
 import stickers from './data/stickersData';
 
 interface StickerDataType {
@@ -70,7 +71,8 @@ class ArtWorks extends React.Component {
 		}
 
 		return (
-			<div id='art-works' className='section-container'>
+			<div id='art-works' className='section-container page'>
+				<a href='/#/' className="returnToCenter">x</a>
 				<h1>Digital Illustration</h1>
 				<p className='section-descriptor'>
 				I'm also an illustrator! I am available for logo/mascot designs, illustration, and conference slide deck. Here are some of my best commissions!</p>
