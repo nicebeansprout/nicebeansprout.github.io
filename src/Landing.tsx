@@ -51,12 +51,13 @@ function Landing() {
 		  <Me />
       <Socials/>
       <ReactModal 
-        isOpen={isModalOpend} 
+        isOpen={isModalOpend}
         onRequestClose={() => toggleAboutModal()} 
         parentSelector={() => document.querySelector('#root')}
         className="aboutMeModal"
-        closeTimeoutMS={300}
+        closeTimeoutMS={0}
         ariaHideApp={false}
+        overlayElement={(props: any, children: any) => <div className='aboutMeOverlay' onClick={()=> toggleAboutModal()}>{children}</div>}
         >
         <h1>Hello!</h1>
         <p>Hi! My name is Lookmai. I'm a frontend developer as well as digital illustrator. Currently my commission is opened via <a href="https://ko-fi.com/nicebeansprout" target='blank' rel='noopener noreferrer'>Kofi</a> and an <a href="https://etsy.com/shop/nicebeansprout" target='blank' rel='noopener noreferrer'>Etsy store</a> where I sell my custom made merchandise! I also stream on Twitch sometime over at <a href="https://twitch.tv/nicebeansprout" target='blank' rel='noopener noreferrer'>twitch.tv/nicebeansprout</a>.</p>
