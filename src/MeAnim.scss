@@ -109,3 +109,23 @@ $animation_duration: 300ms;
 	z-index: 1;
 	pointer-events: none;
 }
+
+
+@media screen and (max-width: 600px) {
+	.page-container > #greetings {
+    margin: 60px 0;
+	}
+	h1 {
+		font-size: 70px;
+	}
+	.social-link {
+		text-align: left;
+	}
+	#calculableMe {
+		transform: scale(0.7);
+		overflow: visible;
+	}
+  #landing {
+    justify-content: end;
+  }
+}

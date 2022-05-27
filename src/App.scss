@@ -153,19 +153,6 @@ $pink: #e9bbb9;
 	
 }
 
-@media screen and (max-width: 600px) {
-	.page-container > #greetings {
-		margin-top: 50px
-	}
-	h1 {
-		font-size: 50px;
-	}
-	.links {
-		display: flex;
-		flex-direction: column;	
-		align-items: center;
-	}
-}
 
 .clouds {
 	position: absolute;
@@ -537,6 +524,7 @@ $pink: #e9bbb9;
 	position: absolute;
 	bottom: 0;
 	left: 0;
+	z-index: 5;
 	.links {
 		display: flex;
 		flex-direction: column;
