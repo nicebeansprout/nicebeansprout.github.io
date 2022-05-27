@@ -1,7 +1,5 @@
 $white: #fbf0de;
 $pink: #e9bbb9;
-$spriteMaxWidth: 1500px;
-$spriteMaxHeight: 607px;
 
 @mixin gradientButton() {
 	$button_color1: #bca4d1;
@@ -102,15 +100,12 @@ $spriteMaxHeight: 607px;
 	}
 	background-image: url('./assets/landing_assets/logo_black.png');
 	background-position: right bottom;
-	background-color: #f3efe7;
 	background-repeat: no-repeat;
   background-size: 76px;
 }
 
-
 .button {
 	display: inline-block;
-	background-color:#c3beb3;
 	min-width: 200px;
   max-width: 300px;
 	padding: 9px;
@@ -169,78 +164,6 @@ $spriteMaxHeight: 607px;
 		display: flex;
 		flex-direction: column;	
 		align-items: center;
-	}
-}
-#calculableMe {
-	z-index: 2;
-	max-width: 500px;
-	max-height: $spriteMaxHeight;
-	overflow: hidden;
-	// transition: ease-out 0.3s;
-	#mouth {
-		// opacity: 0;
-		position: absolute;
-		top: 330px;
-		left: 185px;
-		width: 50px;
-		height: 50px;
-		background-image: url('./assets/landing_assets/mouthsprite.png');
-		background-repeat: no-repeat;
-		background-size: contain;
-		z-index: 2;
-		&.surprised {
-			background-image: url('./assets/landing_assets/mouth2sprite.png');
-		}
-	}
-	#eyesContainer {
-		// opacity: 0;
-		position: absolute;
-		top: 210px;
-		left: 88px;
-		width: 263px;
-		height: 110px;
-		background-color: white;
-	}
-	#eyes {
-		position: absolute;
-		top: 0;
-		left: calc(20px);
-		width: 213px;
-		height: 87px;
-		background-image: url('./assets/landing_assets/eyessprite.png');
-		background-repeat: no-repeat;
-		background-size: contain;
-		z-index: 0;
-	}
-}
-#cantblink {
-	width: 100%;
-	height: 100%;
-	background-image: url('./assets/landing_assets/blinkstatic.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	z-index: 1;
-	// transition: ease-out 0.3s;
-}
-#me {
-	// opacity: 0;
-	position: absolute;
-	max-width: $spriteMaxWidth;
-	max-height: $spriteMaxHeight;
-	background-image: url('./assets/landing_assets/blinksprite.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	z-index: 1;
-	pointer-events: none;
-
-	&.position1 {
-		left: 0;
-	}
-	&.position2 {
-		left: -500px;
-	}
-	&.position3 {
-		left: -1000px;
 	}
 }
 
@@ -634,7 +557,7 @@ $spriteMaxHeight: 607px;
 .themeSwitchContainer {
 	position: absolute;
 	top:5px;
-	right: 5px;
+	left: 5px;
 }
 .toggle-icon {
 	font-size: 15px;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Route, HashRouter } from 'react-router-dom';
 import './App.scss';
 import './PageTransition.scss';
+import './Theme.scss';
 import Cats from './Cats';
 import Wisdom from './Wisdom';
 import PokemonFinder from './PokemonFinder';
@@ -78,7 +79,7 @@ function App() {
 							</Route>
 						))}
 					</HashRouter>
-					{/* <ThemeToggle/> */}
+					<ThemeToggle/>
 				</div>
 		);
 }

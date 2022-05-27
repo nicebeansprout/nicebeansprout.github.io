@@ -1,0 +1,44 @@
+// LIGHT MODE
+body {
+  #root {
+	  background-color: #f3efe7;
+  }
+  .button {
+	  background-color:#c3beb3;
+  }
+}
+
+// DARK MODE
+body.dark-mode {
+  color: #f3efe7;
+  #root {
+	  background-color: #333;
+  }
+
+  .page-container #greetings {
+    color: #f3efe7;
+  }
+  
+  .button {
+	  background-color:#000;
+    &:hover {
+      background-color: #555;
+    }
+  }
+
+  #socials .social-link {
+    
+	  background-color:#f3efe7;
+    color: #333;
+    &:hover {
+      background-color: #c3beb3;
+    }
+  }
+
+  #web-works .section-descriptor, #art-works .section-descriptor {
+    color: #f3efe7;
+  }
+  #web-works h1, #art-works h1 {
+    color: white;
+  }
+}

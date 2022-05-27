@@ -1,0 +1,111 @@
+.bg-sprite {
+	width: 100%;
+	height: 0;
+	animation-timing-function: step-start;
+	animation-iteration-count: infinite;
+	background-repeat: repeat-x;
+}
+
+$spriteMaxWidth: 1500px;
+$spriteMaxHeight: 607px;
+
+$sprite-height: 607;
+$sprite-width: 1500;
+$sprite-cell_count: 3;
+$animation_duration: 300ms;
+
+@mixin bg-sprite($name, $sprite-height, $sprite-width, $sprite-cell_count, $animation_duration, $sprite-url) {
+	.bg-sprite--#{$name} {
+		padding-bottom: percentage($sprite-height / ($sprite-width/$sprite-cell_count));
+		background-image: url( #{$sprite-url} );
+		background-size: $sprite-cell_count * 100%;
+		transition: transform $animation_duration;
+		background-position: 0% 50%;
+	}
+	.bg-sprite--#{$name}--playing {
+		animation-name: animatedSprite-#{$name};
+		animation-duration: $animation_duration;
+	}
+	@keyframes animatedSprite-#{$name} {
+		@for $i from 0 through $sprite-cell_count {
+			#{$i * (100% / $sprite-cell_count)} {
+				background-position: (-100% * $i) 50%;
+			}
+		}
+	}
+}
+
+@include bg-sprite(
+	'me', 
+	$sprite-height, 
+	$sprite-width, 
+	$sprite-cell_count, 
+	$animation_duration, 
+	'./assets/landing_assets/blinksprite.png'
+);
+
+#calculableMe {
+	z-index: 2;
+	max-width: 500px;
+	max-height: $spriteMaxHeight;
+	overflow: hidden;
+	// transition: ease-out 0.3s;
+	
+	#canblink {
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	#mouth {
+		// opacity: 0;
+		position: absolute;
+		top: 330px;
+		left: 185px;
+		width: 50px;
+		height: 50px;
+		background-image: url('./assets/landing_assets/mouthsprite.png');
+		background-repeat: no-repeat;
+		background-size: contain;
+		z-index: 2;
+		&.surprised {
+			background-image: url('./assets/landing_assets/mouth2sprite.png');
+		}
+	}
+	#eyesContainer {
+		// opacity: 0;
+		position: absolute;
+		top: 210px;
+		left: 88px;
+		width: 263px;
+		height: 110px;
+		background-color: white;
+	}
+	#eyes {
+		position: absolute;
+		top: 0;
+		left: calc(20px);
+		width: 213px;
+		height: 87px;
+		background-image: url('./assets/landing_assets/eyessprite.png');
+		background-repeat: no-repeat;
+		background-size: contain;
+		z-index: 0;
+	}
+}
+
+#cantblink {
+	width: 100%;
+	height: 100%;
+	background-image: url('./assets/landing_assets/blinkstatic.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: 1;
+	// transition: ease-out 0.3s;
+}
+
+#me {
+	// opacity: 0;
+	position: absolute;
+	z-index: 1;
+	pointer-events: none;
+}
