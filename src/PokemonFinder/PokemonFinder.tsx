@@ -12,6 +12,7 @@ function PokemonFinder() {
 	const [pokemonsList, setPokemonList] = useState<Pokemon[]>([]);
 	const [suggestedPokemons, setSuggestedPokemons] = useState<Pokemon[]>([]);
 	const [activeRoutes, setActiveRoutes] = useState<string[]>([]);
+	const [pokemonText, setPokemonText] = useState<string>("");
 
 	const pokemonApi = new PokemonClient();
 
@@ -46,6 +47,8 @@ function PokemonFinder() {
 
 	function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
 		const newInput = e.currentTarget.value;
+		setActiveRoutes([]);
+		setPokemonText(newInput);
 		if (newInput === '') {
 			setSuggestedPokemons([]);
 			return;
@@ -55,6 +58,8 @@ function PokemonFinder() {
 	}
 
 	function handlePokemonClicked(pokemon: Pokemon) {
+		setSuggestedPokemons([]);
+		setPokemonText(pokemon.name);
 		(async() => {
 			await pokemonApi.getPokemonLocationAreaById(pokemon.id).then((locationArea: LocationAreaEncounter[]) => {
 				const routes: string[] = [];
@@ -73,7 +78,7 @@ function PokemonFinder() {
 			<div className='pokemon-finder'>
 				<KantoCanvas activeRoutes={activeRoutes}/>
 				<div className='p-searchbar-container'>
-					<input className="p-searchbar-input" onChange={handleInputChange}></input>
+					<input className="p-searchbar-input" onChange={handleInputChange} value={pokemonText}></input>
 					<ul className='p-searchbar-suggestions'>
 						{suggestedPokemons.map(pokemon => 
 							<li className='p-searchbar-suggestion' key={pokemon.name} onClick={() => handlePokemonClicked(pokemon)}>

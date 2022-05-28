@@ -17,6 +17,7 @@ function draw(ctx: CanvasRenderingContext2D, route: RouteRenderType) {
     ctx.shadowColor = 'red';
     ctx.shadowBlur = 15;
   } else {
+    ctx.shadowColor = 'rgba(0,0,0,0)';
     ctx.shadowBlur = 0;
   }
   ctx.translate(route.location.x, route.location.y);
@@ -30,10 +31,14 @@ function KantoCanvas(props: KantoCanvasProps) {
 
   const canvasRef = useRef(null);
 
+  // TODO
+  // - draw landmarks like caves, forests, cities
+
   useEffect(() => {
     const canvas: any = canvasRef.current;
     if (canvas) {
       const context: CanvasRenderingContext2D = canvas.getContext('2d');
+      context.clearRect(0, 0, canvas.width, canvas.height);
       kantoRoutes.forEach(route => {
         draw(context, {...route, isActive: props.activeRoutes.findIndex(r => r === route.id) > 0})
       });
