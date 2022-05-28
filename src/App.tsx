@@ -5,7 +5,7 @@ import './PageTransition.scss';
 import './Theme.scss';
 import Cats from './Cats';
 import Wisdom from './Wisdom';
-import PokemonFinder from './PokemonFinder';
+import PokemonFinder from './PokemonFinder/PokemonFinder';
 import Landing from './Landing';
 import ArtWorks from './ArtWorks';
 import WebWorks from './WebWorks';
