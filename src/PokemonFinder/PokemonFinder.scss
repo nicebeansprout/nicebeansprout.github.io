@@ -10,16 +10,38 @@
 }
 
 .pokemon-finder {
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.map-canvas-container {
+  width: 2048px;
+  height: 1448px;
+}
+
+.mapBG {
   width: 2048px;
   height: 1448px;
   background-image: url('./assets/kantomap.png');
   background-size: cover;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.pokemon-map-canvas {
+  pointer-events: none;
 }
 
 .p-searchbar-container {
   position: absolute;
   top: 0;
   left: 70px;
+  z-index: 2;
 }
 
 .p-searchbar-input {

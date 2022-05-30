@@ -48,6 +48,7 @@ function KantoCanvas(props: KantoCanvasProps) {
 
   return (
     <canvas 
+      className='pokemon-map-canvas'
       ref={canvasRef} 
       id='kanto-canvas' 
       width={CANVAS_W} 
