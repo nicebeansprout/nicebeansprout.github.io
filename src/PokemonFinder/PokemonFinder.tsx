@@ -2,8 +2,9 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Generation, Generations, LocationArea, LocationAreaEncounter, MainClient, NamedAPIResource, PokemonClient } from  'pokenode-ts';
 import './PokemonFinder.scss';
 import KantoCanvas from './KantoCanvas';
+import PokeSearchbar from './PokeSearchbar';
 
-interface Pokemon extends NamedAPIResource{
+export interface Pokemon extends NamedAPIResource{
 	sprite: string;
 	id: number;
 }
@@ -15,10 +16,7 @@ type Position = {
 
 function PokemonFinder() {
 	const [pokemonsList, setPokemonList] = useState<Pokemon[]>([]);
-	const [suggestedPokemons, setSuggestedPokemons] = useState<Pokemon[]>([]);
 	const [activeRoutes, setActiveRoutes] = useState<string[]>([]);
-	const [pokemonText, setPokemonText] = useState<string>("");
-	const [testboxStyle, setTestboxStyle] = useState<React.CSSProperties>({});
 	const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
 	const [mapPosition, setMapPosition] = useState<Position>({x: 0, y: 0});
 
@@ -53,21 +51,7 @@ function PokemonFinder() {
 		setPokemonList(newPokemons)
 	}
 
-	function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
-		const newInput = e.currentTarget.value;
-		setActiveRoutes([]);
-		setPokemonText(newInput);
-		if (newInput === '') {
-			setSuggestedPokemons([]);
-			return;
-		}
-		var newSuggestions = pokemonsList.filter(pokemon => pokemon.name.substring(0, newInput.length) === newInput);
-		setSuggestedPokemons(newSuggestions);
-	}
-
 	function handlePokemonClicked(pokemon: Pokemon) {
-		setSuggestedPokemons([]);
-		setPokemonText(pokemon.name);
 		(async() => {
 			await pokemonApi.getPokemonLocationAreaById(pokemon.id).then((locationArea: LocationAreaEncounter[]) => {
 				const routes: string[] = [];
@@ -97,17 +81,11 @@ function PokemonFinder() {
 
 	return (
 		<div className="pokemon-finder-container">
-			<div className='p-searchbar-container'>
-					<input className="p-searchbar-input" onChange={handleInputChange} value={pokemonText}></input>
-					<ul className='p-searchbar-suggestions'>
-						{suggestedPokemons.map(pokemon => 
-							<li className='p-searchbar-suggestion' key={pokemon.name} onClick={() => handlePokemonClicked(pokemon)}>
-								<p>{pokemon.name}</p>
-								<img src={pokemon.sprite} alt={pokemon.name}/>
-							</li>
-						)}
-					</ul>
-			</div>
+			<PokeSearchbar
+				pokemonsList={pokemonsList}
+				handlePokemonClicked={handlePokemonClicked}
+				setActiveRoutes={x => setActiveRoutes(x)}
+			/>
 			<div className='pokemon-finder'>
 				<div 
 					className='map-canvas-container' 
